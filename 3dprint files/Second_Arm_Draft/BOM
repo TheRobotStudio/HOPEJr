@@ -12,7 +12,6 @@ Servos:
 4 x Feetech STS3250 servo for the shoulder pitch, yaw, roll and elbow
 3 x Feetech STS3215-C018 12v servos for the wrist roll, pitch and yaw
 1 x Adaptor board FE-URT or Waveshare
-1 x high strength tendon motor tbd
 
 Bearings:
 1 x 70x90x10mm ball bearing
@@ -42,3 +41,5 @@ For hybrid tendon:
 
 20cm of bicycle brake outer
 30cm of PTFE 3mm outer diameter by 2mm inner diameter 
+1m x 6mm diameter bungee cord
+2m x 1.6mm diameter kite line or similar
