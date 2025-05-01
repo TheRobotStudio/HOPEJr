@@ -1,0 +1,8 @@
+{
+    "document_id": "1f1c0550465f919bfc29ec0d",
+    "assembly_name": "hope_right_leg",
+    "robot_name": "Hope_Right_Leg",
+    "use_fixed_links": true,
+    # "package_name": "hope_jr_description/hope_jr/",
+    # "add_dummy_base_link": true
+}
