@@ -1,7 +1,7 @@
 # HOPEJr
 HOPEJr_open-source_DIY_Humanoid_Robot_with_dexterous_hands
 
-As of 02/12/2024 the most up to date releases are for the Second_Arm_Draft(Addendum1) and the First_Hand_Draft.
+As of 02/07/2025 the most up to date releases are for the Second_Arm_Draft(Addendum1) and the First_Hand_Draft.
 
 Right arm: 3dprint_files/Second_Arm_Draft/Addendum1
 Left Arm: 3dprint_files/Second_Arm_Draft/Left/Addendum1
