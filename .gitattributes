@@ -1,0 +1,2 @@
+Humanoid/STEP/HJr_Legs_07k.STEP filter=lfs diff=lfs merge=lfs -text
+Humanoid/HJr_Legs_07k.zip filter=lfs diff=lfs merge=lfs -text
