@@ -5,12 +5,12 @@ BOM for HopeJr/Homunculus
 
 ### Motors:
 
-| Model               | Quantity | References | Details |
-|---------------------|----------|------------|---------|
-| SCS0009 Feetech     | 16       | [Alibaba](https://www.alibaba.com/product-detail/High-Speed-6V-2-3KG-Micro_1601228126669.html?spm=a2747.product_manager.0.0.475071d2EwAqHN) [Aliexpress](https://fr.aliexpress.com/item/1005008869191632.html) | 3x fingers w\ thumb, 4x thumb (hand) |
-| STS3250 Feetech     | 2        | [Alibaba](https://www.alibaba.com/product-detail/12V-50KG-TTL-Brushless-HV-Waterproof_1601044995317.html?spm=a2747.product_manager.0.0.29d171d2zuEkjQ) [Aliexpress](https://fr.aliexpress.com/item/1005008926395265.html) | 1x shoulder yaw, 1x elbow flex (arm) |
-| STS3215 Feetech 12V | 4        | [Alibaba](https://www.alibaba.com/product-detail/SOARM100-Robotic-Arm-12V-30KG-STS3215_1601216757543.html?spm=a2747.product_manager.0.0.507571d2ELGamW) [Aliexpress](https://fr.aliexpress.com/item/1005008742699758.html) | arm |
-| SM8512BL Feetech    | 1        | [Alibaba](https://www.alibaba.com/product-detail/Feetech-12V-85kg-High-Torque-SM8512BL_1600728223869.html?spm=a2747.product_manager.0.0.4f3b71d2scUQkh) [Aliexpress](https://fr.aliexpress.com/item/1005008461199168.html) | shoulder pitch (arm) |
+| Model               | Quantity | Reference | Details |
+|---------------------|----------|-----------|---------|
+| SCS0009 Feetech     | 16       | [Alibaba](https://www.alibaba.com/product-detail/High-Speed-6V-2-3KG-Micro_1601228126669.html?spm=a2747.product_manager.0.0.475071d2EwAqHN) | 3x fingers w\ thumb, 4x thumb (hand) |
+| STS3250 Feetech     | 2        | [Alibaba](https://www.alibaba.com/product-detail/12V-50KG-TTL-Brushless-HV-Waterproof_1601044995317.html?spm=a2747.product_manager.0.0.29d171d2zuEkjQ) | 1x shoulder yaw, 1x elbow flex (arm) |
+| STS3215 Feetech 12V | 4        | [Alibaba](https://www.alibaba.com/product-detail/SOARM100-Robotic-Arm-12V-30KG-STS3215_1601216757543.html?spm=a2747.product_manager.0.0.507571d2ELGamW) | arm |
+| SM8512BL Feetech    | 1        | [Alibaba](https://www.alibaba.com/product-detail/Feetech-12V-85kg-High-Torque-SM8512BL_1600728223869.html?spm=a2747.product_manager.0.0.4f3b71d2scUQkh) | shoulder pitch (arm) |
 
 
 ### Boards, power supplies and cables :
