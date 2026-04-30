@@ -3,7 +3,7 @@
 ## Repository Structure
 
 ### 📁 [`Humanoid/`](./Humanoid/) - Full Humanoid Development
-*Original work by Rob Knight*
+*Original work by Rob Knight and updates for new motors, Robstride 02*
 
 This directory contains the comprehensive humanoid robot development including:
 - **Complete Body Design**: Full humanoid with arms, torso, and leg structures
