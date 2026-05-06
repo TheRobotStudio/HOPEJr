@@ -1,0 +1,246 @@
+<?xml version="1.0"?>
+<robot name="hopejr_hand" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:macro name="hopejr_hand_macro" params="prefix parent_link scale">
+
+        <xacro:include filename="$(find hopejr_hand_description)/urdf/macros.xacro" />
+
+        <link name="${prefix}base_link">
+            <visual>
+                <origin xyz="0 0 0" rpy="${pi/180*0} 0 0"/>
+                <geometry>
+                    <mesh filename="package://hopejr_hand_description/meshes/visual/base_link.dae" scale="${scale} ${scale} ${scale}"/>
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://hopejr_hand_description/meshes/collision/base_link.stl" scale="${scale} ${scale} ${scale}"/>
+                </geometry>
+            </collision>
+            <inertial>
+                <origin xyz="-0.02 0 0.028" rpy="0 0 0"/>
+                <mass value="0.03323"/>
+                <inertia ixx="0.000018824494" ixy="-0.000000571474" ixz="-0.000000041098" iyy="0.00001505929" iyz="0.000000023636" izz="0.000013661405"/>
+            </inertial>
+        </link>
+
+        <link name="${prefix}hand">
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://hopejr_hand_description/meshes/visual/hand.dae" scale="${scale} ${scale} ${scale}"/>
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://hopejr_hand_description/meshes/collision/hand.stl" scale="${scale} ${scale} ${scale}"/>
+                </geometry>
+            </collision>
+            <inertial>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <mass value="0.252893"/>
+                <inertia ixx="0.0002839" ixy="0.000003336317" ixz="0.000004077546" iyy="0.0001891" iyz="0.000000331897" izz="0.0001469"/>
+            </inertial>
+        </link>
+
+        <joint name="${prefix}wrist_pitch" type="revolute">
+            <parent link="${prefix}base_link"/>
+            <child link="${prefix}hand"/>
+            <origin xyz="${0.29887*scale} ${0.07923*scale} 0" rpy="0 ${pi/2} 0"/>
+            <axis xyz="0 1 0"/>
+            <limit effort="10" velocity="1.0" lower="${-pi/180*75}" upper="${pi/180*80}" />
+        </joint>
+
+        <link name="${prefix}thumb_mcp_2">
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://hopejr_hand_description/meshes/visual/thumb_mcp_2.dae" scale="${scale} ${scale} ${scale}"/>
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://hopejr_hand_description/meshes/collision/thumb_mcp_2.stl" scale="${scale} ${scale} ${scale}"/>
+                </geometry>
+            </collision>
+            <inertial>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <mass value="0.008776"/>
+                <inertia ixx="0.000000783215" ixy="0.000000007992" ixz="0.000000266897" iyy="0.000000932685" iyz="-0.000000055174" izz="0.000000534905"/>
+            </inertial>
+        </link>
+
+        <joint name="${prefix}thumb_mcp_2" type="revolute"> 
+            <parent link="${prefix}hand"/>
+            <child link="${prefix}thumb_mcp_2"/>
+            <origin xyz="${0.19772*scale} ${0.28618*scale} ${0.058046*scale}" rpy="${pi/180*156} ${pi/180*11} ${-pi/180*67}"/>
+            <axis xyz="0 0 1"/>
+            <limit effort="10" velocity="1.0" lower="-3" upper="-0.043" />
+        </joint>
+
+        <link name="${prefix}thumb_pip_1_support">
+            <inertial>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <mass value="0.0000000000001"/>
+                <inertia ixx="0.00000000000001" ixy="0" ixz="0" iyy="0.00000000000001" iyz="0" izz="0.00000000000001"/>
+            </inertial>
+        </link>
+
+        <joint name="${prefix}thumb_pip_1_support" type="revolute">
+            <parent link="${prefix}thumb_mcp_2"/>
+            <child link="${prefix}thumb_pip_1_support"/>
+            <origin xyz="${0.1180315*scale} ${-0.0121475*scale} ${-0.229186*scale}" rpy="${-pi/180*157.5} ${pi/180*64.13} ${-pi/180*20.774}"/>
+            <axis xyz="0 -1 0"/>
+            <limit effort="10" velocity="1.0" lower="0" upper="${pi/180*67.5}" />
+            <mimic joint="${prefix}thumb_pip_1"/> </joint>
+
+        <link name="${prefix}thumb_pip_1">
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://hopejr_hand_description/meshes/visual/thumb_pip_1.dae" scale="${scale} ${scale} ${scale}"/>
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://hopejr_hand_description/meshes/collision/thumb_pip_1.stl" scale="${scale} ${scale} ${scale}"/>
+                </geometry>
+            </collision>
+            <inertial>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <mass value="0.007142"/>
+                <inertia ixx="0.000000233324" ixy="-0.000000000007" ixz="0.00000000023" iyy="0.000000597862" iyz="0.000000000054" izz="0.000000638412"/>
+            </inertial>
+        </link>
+
+        <joint name="${prefix}thumb_pip_1" type="revolute">
+            <parent link="${prefix}thumb_pip_1_support"/>
+            <child link="${prefix}thumb_pip_1"/>
+            <origin xyz="${0.152*scale} 0 0" rpy="0 0 0"/>
+            <axis xyz="0 -1 0"/>
+            <limit effort="10" velocity="1.0" lower="0" upper="${pi/180*67.5}" />
+        </joint>
+
+        <link name="${prefix}thumb_pip_2_support">
+            <inertial>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <mass value="0.0000000000001"/>
+                <inertia ixx="0.00000000000001" ixy="0" ixz="0" iyy="0.00000000000001" iyz="0" izz="0.00000000000001"/>
+            </inertial>
+        </link>
+
+        <joint name="${prefix}thumb_pip_2_support" type="revolute">
+            <parent link="${prefix}thumb_pip_1"/>
+            <child link="${prefix}thumb_pip_2_support"/>
+            <origin xyz="${0.168*scale} 0 0" rpy="0 0 0"/>
+            <axis xyz="0 -1 0"/>
+            <limit effort="10" velocity="1.0" lower="0" upper="${pi/180*67.5}" />
+            <mimic joint="${prefix}thumb_pip_2"/> </joint>
+
+        <link name="${prefix}thumb_pip_2">
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://hopejr_hand_description/meshes/visual/thumb_pip_2.dae" scale="${scale} ${scale} ${scale}"/>
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://hopejr_hand_description/meshes/collision/thumb_pip_2.stl" scale="${scale} ${scale} ${scale}"/>
+                </geometry>
+            </collision>
+            <inertial>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <mass value="0.006089"/>
+                <inertia ixx="0.000000197597" ixy="-0.000000000005" ixz="0.00000000043" iyy="0.000000404632" iyz="0.000000000054" izz="0.000000440963"/>
+            </inertial>
+        </link>
+
+        <joint name="${prefix}thumb_pip_2" type="revolute">
+            <parent link="${prefix}thumb_pip_2_support"/>
+            <child link="${prefix}thumb_pip_2"/>
+            <origin xyz="${0.152*scale} 0 0" rpy="0 0 0"/>
+            <axis xyz="0 -1 0"/>
+            <limit effort="10" velocity="1.0" lower="0" upper="${pi/180*67.5}" />
+        </joint>
+
+        <link name="${prefix}thumb_dip_support">
+            <inertial>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <mass value="0.0000000000001"/>
+                <inertia ixx="0.00000000000001" ixy="0" ixz="0" iyy="0.00000000000001" iyz="0" izz="0.00000000000001"/>
+            </inertial>
+        </link>
+
+        <joint name="${prefix}thumb_dip_support" type="revolute">
+            <parent link="${prefix}thumb_pip_2"/>
+            <child link="${prefix}thumb_dip_support"/>
+            <origin xyz="${0.128*scale} 0 0" rpy="0 0 0"/>
+            <axis xyz="0 -1 0"/>
+            <limit effort="10" velocity="1.0" lower="0" upper="${pi/180*67.5}" />
+            <mimic joint="${prefix}thumb_dip"/> </joint>
+
+        <link name="${prefix}thumb_dip">
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://hopejr_hand_description/meshes/visual/thumb_dip.dae" scale="${scale} ${scale} ${scale}"/>
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://hopejr_hand_description/meshes/collision/thumb_dip.stl" scale="${scale} ${scale} ${scale}"/>
+                </geometry>
+            </collision>
+            <inertial>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <mass value="0.005429"/>
+                <inertia ixx="0.000000155671" ixy="0.000000000024" ixz="0.000000002166" iyy="0.00000033961" iyz="0.000000000002" izz="0.000000357923"/>
+            </inertial>
+        </link>
+
+        <joint name="${prefix}thumb_dip" type="revolute">
+            <parent link="${prefix}thumb_dip_support"/>
+            <child link="${prefix}thumb_dip"/>
+            <origin xyz="${0.152*scale} 0 0" rpy="0 0 0"/>
+            <axis xyz="0 -1 0"/>
+            <limit effort="10" velocity="1.0" lower="0" upper="${pi/180*67.5}" />
+        </joint>
+
+        <xacro:create_finger
+            name="${prefix}index"
+            mcp1_xyz="${0.071613*scale} ${0.25677*scale} ${0.85375*scale}"
+            mcp1_rpy="${-pi/180*88.779} ${-pi/180*84.983} ${pi/180*89.385}"
+            hand_link="${prefix}hand"
+            scale="${scale}"/>
+
+        <xacro:create_finger
+            name="${prefix}middle"
+            mcp1_xyz="${0.024581*scale} ${0.077754*scale} ${0.87322*scale}"
+            mcp1_rpy="${-pi/180*79.515} ${-pi/180*89.706} ${pi/180*80.164}"
+            hand_link="${prefix}hand"
+            scale="${scale}"/>
+
+        <xacro:create_finger
+            name="${prefix}ring"
+            mcp1_xyz="${0.085778*scale} ${-0.13244*scale} ${0.8552*scale}"
+            mcp1_rpy="${-pi/180*93.801} ${-pi/180*99.155} ${pi/180*101.17}"
+            hand_link="${prefix}hand"
+            scale="${scale}"/>
+
+        <xacro:create_finger
+            name="${prefix}pinky"
+            mcp1_xyz="${0.16965*scale} ${-0.31494*scale} ${0.77426*scale}"
+            mcp1_rpy="${-pi/180*88.255} ${-pi/180*110.35} ${pi/180*100.84}"
+            hand_link="${prefix}hand"
+            scale="${scale}"/>
+
+    </xacro:macro>
+
+</robot>

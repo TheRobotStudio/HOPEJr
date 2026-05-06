@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<robot name="hopejr_right_arm_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:include filename="$(find hopejr_arm_description)/urdf/hopejr_arm.urdf.xacro"/>
+    <xacro:include filename="$(find hopejr_hand_description)/urdf/hopejr_hand.urdf.xacro"/>
+    
+    <xacro:property name="prefix" value="hand_"/>
+    <xacro:hopejr_hand_macro 
+        prefix="${prefix}"
+        parent_link="forearm"
+        scale="0.1"
+    />
+
+    <joint name="wrist_yaw" type="revolute">
+        <parent link="forearm"/>
+        <child link="${prefix}base_link"/>
+        <origin xyz="0 0.00021 0.0917" rpy="0 ${-pi/2} 0"/>
+        <axis xyz="0 0 1"/>
+        <limit effort="10" velocity="1.0" lower="${-pi/18}" upper="${pi/18}" />
+    </joint>
+</robot>

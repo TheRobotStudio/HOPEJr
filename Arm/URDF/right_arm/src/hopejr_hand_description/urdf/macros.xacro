@@ -1,0 +1,215 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:macro name="create_finger" params="name mcp1_xyz mcp1_rpy hand_link scale">
+
+        <link name="${name}_mcp_1">
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://hopejr_hand_description/meshes/visual/mcp_1.dae" scale="${scale} ${scale} ${scale}"/>
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://hopejr_hand_description/meshes/collision/mcp_1.stl" scale="${scale} ${scale} ${scale}"/>
+                </geometry>
+            </collision>
+            <inertial>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <mass value="0.004836"/>
+                <inertia ixx="0.000000235908" ixy="-0.000000006556" ixz="0.000000001806" iyy="0.000000740439" iyz="0.000000000035" izz="0.000000830731"/>
+            </inertial>
+        </link>
+
+        <joint name="${name}_mcp_1" type="fixed">
+            <parent link="${hand_link}"/>
+            <child link="${name}_mcp_1"/>
+            <origin xyz="${mcp1_xyz}" rpy="${mcp1_rpy}"/>
+            <axis xyz="0 1 0"/>
+        </joint>
+
+        <link name="${name}_mcp_2_support">
+            <inertial>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <mass value="0.0000000000001"/>
+                <inertia ixx="0.00000000000001" ixy="0" ixz="0" iyy="0.00000000000001" iyz="0" izz="0.00000000000001"/>
+            </inertial>
+        </link>
+
+        <joint name="${name}_mcp_2_support" type="revolute">
+            <parent link="${name}_mcp_1"/>
+            <child link="${name}_mcp_2_support"/>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <axis xyz="0 1 0"/>
+            <limit effort="10" velocity="1.0" lower="0" upper="${pi/180*67.5}" />
+            <mimic joint="${name}_mcp_2"/>
+        </joint>
+
+        <link name="${name}_mcp_2">
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://hopejr_hand_description/meshes/visual/mcp_2.dae" scale="${scale} ${scale} ${scale}"/>
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://hopejr_hand_description/meshes/collision/mcp_2.stl" scale="${scale} ${scale} ${scale}"/>
+                </geometry>
+            </collision>
+            <inertial>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <mass value="0.001654"/>
+                <inertia ixx="0.000000049479" ixy="0.000000000263" ixz="0.000000000299" iyy="0.000000032432" iyz="0.000000000057" izz="0.000000038462"/>
+            </inertial>
+        </link>
+
+        <joint name="${name}_mcp_2" type="revolute">
+            <parent link="${name}_mcp_2_support"/>
+            <child link="${name}_mcp_2"/>
+            <origin xyz="${0.152*scale} 0 0" rpy="0 0 0"/>
+            <axis xyz="0 1 0"/>
+            <limit effort="10" velocity="1.0" lower="0" upper="${pi/180*67.5}" />
+        </joint>
+
+        <link name="${name}_pip_support">
+            <inertial>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <mass value="0.0000000000001"/>
+                <inertia ixx="0.00000000000001" ixy="0" ixz="0" iyy="0.00000000000001" iyz="0" izz="0.00000000000001"/>
+            </inertial>
+        </link>
+
+        <joint name="${name}_pip_support" type="revolute">
+            <parent link="${name}_mcp_2"/>
+            <child link="${name}_pip_support"/>
+            <origin xyz="${-0.195135*scale} 0 0" rpy="0 0 0"/>
+            <axis xyz="0 0 1"/>
+            <limit effort="10" velocity="1.0" lower="${-pi/180*23.8}" upper="${pi/180*23.8}" />
+            <mimic joint="${name}_pip"/>
+        </joint>
+
+        <link name="${name}_pip">
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://hopejr_hand_description/meshes/visual/pip.dae" scale="${scale} ${scale} ${scale}"/>
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://hopejr_hand_description/meshes/collision/pip.stl" scale="${scale} ${scale} ${scale}"/>
+                </geometry>
+            </collision>
+            <inertial>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <mass value="0.005708"/>
+                <inertia ixx="0.00000018835" ixy="0.00000001165" ixz="0.000000000165" iyy="0.000000372084" iyz="-0.000000000039" izz="0.00000039757"/>
+            </inertial>
+        </link>
+
+        <joint name="${name}_pip" type="revolute">
+            <parent link="${name}_pip_support"/>
+            <child link="${name}_pip"/>
+            <origin xyz="${0.435*scale} 0 0" rpy="0 0 0"/>
+            <axis xyz="0 0 1"/>
+            <limit effort="10" velocity="1.0" lower="${-pi/180*23.8}" upper="${pi/180*23.8}" />
+        </joint>
+
+        <link name="${name}_dip_1_support">
+            <inertial>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <mass value="0.0000000000001"/>
+                <inertia ixx="0.00000000000001" ixy="0" ixz="0" iyy="0.00000000000001" iyz="0" izz="0.00000000000001"/>
+            </inertial>
+        </link>
+
+        <joint name="${name}_dip_1_support" type="revolute">
+            <parent link="${name}_pip"/>
+            <child link="${name}_dip_1_support"/>
+            <origin xyz="${-0.029132*scale} 0 0" rpy="0 0 0"/>
+            <axis xyz="0 1 0"/>
+            <limit effort="10" velocity="1.0" lower="0" upper="${pi/180*67.5}" />
+            <mimic joint="${name}_dip_1"/>
+        </joint>
+
+        <link name="${name}_dip_1">
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://hopejr_hand_description/meshes/visual/dip_1.dae" scale="${scale} ${scale} ${scale}"/>
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://hopejr_hand_description/meshes/collision/dip_1.stl" scale="${scale} ${scale} ${scale}"/>
+                </geometry>
+            </collision>
+            <inertial>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <mass value="0.005093"/>
+                <inertia ixx="0.000000143621" ixy="-0.00000000003" ixz="0.000000000091" iyy="0.000000290288" iyz="-0.000000000079" izz="0.000000314107"/>
+            </inertial>
+        </link>
+
+        <joint name="${name}_dip_1" type="revolute">
+            <parent link="${name}_dip_1_support"/>
+            <child link="${name}_dip_1"/>
+            <origin xyz="${0.152*scale} 0 0" rpy="0 0 0"/>
+            <axis xyz="0 1 0"/>
+            <limit effort="10" velocity="1.0" lower="0" upper="${pi/180*67.5}" />
+        </joint>
+
+        <link name="${name}_dip_2_support">
+            <inertial>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <mass value="0.0000000000001"/>
+                <inertia ixx="0.00000000000001" ixy="0" ixz="0" iyy="0.00000000000001" iyz="0" izz="0.00000000000001"/>
+            </inertial>
+        </link>
+
+        <joint name="${name}_dip_2_support" type="revolute">
+            <parent link="${name}_dip_1"/>
+            <child link="${name}_dip_2_support"/>
+            <origin xyz="${0.106*scale} 0 0" rpy="0 0 0"/>
+            <axis xyz="0 1 0"/>
+            <limit effort="10" velocity="1.0" lower="0" upper="${pi/180*67.5}" />
+            <mimic joint="${name}_dip_2"/>
+        </joint>
+
+        <link name="${name}_dip_2">
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://hopejr_hand_description/meshes/visual/dip_2.dae" scale="${scale} ${scale} ${scale}"/>
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://hopejr_hand_description/meshes/collision/dip_2.stl" scale="${scale} ${scale} ${scale}"/>
+                </geometry>
+            </collision>
+            <inertial>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <mass value="0.005429"/>
+                <inertia ixx="0.000000155634" ixy="0.000000000003" ixz="-0.000000002159" iyy="0.000000339577" iyz="-0.000000000002" izz="0.000000357884"/>
+            </inertial>
+        </link>
+
+        <joint name="${name}_dip_2" type="revolute">
+            <parent link="${name}_dip_2_support"/>
+            <child link="${name}_dip_2"/>
+            <origin xyz="${0.152*scale} 0 0" rpy="0 0 0"/>
+            <axis xyz="0 1 0"/>
+            <limit effort="10" velocity="1.0" lower="0" upper="${pi/180*67.5}" />
+            <mimic joint="${name}_dip_1" multiplier="0.8" offset="0"/>
+        </joint>
+        
+    </xacro:macro>
+</robot>
